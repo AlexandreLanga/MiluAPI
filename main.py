@@ -90,7 +90,8 @@ async def chat_assistant(data: UserMessage):
                     "Oi! Sou a Milu 😊\n\n"
                     "Recebi sua mensagem, mas estou atendendo muitas pessoas "
                     "agora e meus recursos ficaram temporariamente indisponíveis.\n\n"
-                    "Tente novamente daqui a alguns minutos. Vou ficar feliz em continuar nossa conversa!"
+                    "Tente novamente daqui a alguns minutos. Vou ficar feliz em continuar nossa conversa!\n"
+                    f"{str(e)}"
                 )
             }
 
