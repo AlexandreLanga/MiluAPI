@@ -50,6 +50,8 @@ async def chat_assistant(data: UserMessage):
 
         Pergunta do usuário:
         {data.message}
+
+        Responda no idioma em que a pergunta do usuário for feita, em inglês se for perguntado em inglês ou outra língua, e português se for perguntado em português.
         """
 
         response = client.models.generate_content(
