@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from services.MiluService import chat_assistant
+from api_documentation import TITLE, DESCRIPTION, VERSION
 
-app = FastAPI()
+app = FastAPI(title=TITLE, description=DESCRIPTION, version=VERSION)
 
 app.add_middleware(
     CORSMiddleware,
