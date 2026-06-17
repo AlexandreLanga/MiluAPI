@@ -12,4 +12,4 @@ Only accepts POST requests to the /chat endpoint with a JSON body containing a "
 Not an open API, intended for use by the frontend of Minha História na Web project.
 """
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
