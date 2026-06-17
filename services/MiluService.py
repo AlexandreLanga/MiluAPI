@@ -38,6 +38,9 @@ def chat_assistant(message: str, language: str) -> dict:
 
             Pergunta do usuário:
             {message}
+
+            IMPORTANTE:
+            - Sempre responda em português, independentemente do idioma usado pelo usuário.
             """
         else:
             prompt_completo = f"""
@@ -49,6 +52,9 @@ def chat_assistant(message: str, language: str) -> dict:
 
             User's question:
             {message}
+
+            IMPORTANT:
+            - Always answer in English regardless of the language used by the user.
             """
 
         response = client.models.generate_content(
