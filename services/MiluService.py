@@ -140,7 +140,7 @@ def chat_assistant(message: str, language: str) -> dict:
                 "Can you try again later?"
             )
 
-        return {
-            "error": True,
-            "message": message
-        }
+        raise HTTPException(
+            status_code=503,
+            detail=message
+        )
