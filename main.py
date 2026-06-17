@@ -20,5 +20,5 @@ class UserMessage(BaseModel):
 
 
 @app.post("/chat")
-async def chat_assistant_endpoint(data: UserMessage):
-    return chat_assistant(data.message)
+async def chat_assistant_endpoint(data: UserMessage, language: str = "pt"):
+    return chat_assistant(data.message, language)
