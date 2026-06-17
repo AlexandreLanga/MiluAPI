@@ -279,7 +279,7 @@ http://localhost:4200
 - Professional: Work experiences and technical skills. Companies, position and areas of operation: Expresso São Miguel(internship(Java, Python, React, Delphi, PL/SQL)), Concert Technologies(junior software analyst(C#, .NET, Angular, TypeScript)), Vision System(Programming Support Assistant(C#, .NET, Angular, TypeScript)), Infogen(Trainee Programmer/Intern(GeneXus 9 and 10)), Supermecado Popiolski(Cashier/Young Apprentice). The current position is intern at Expresso São Miguel. Computer Science degree at the Community University of the Chapecó Region (Unochapecó). 9 years of English at Wizard Languages. Download resume in PDF.
 - About Me: Personal information and interests. People who inspire me: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 5 favorite quotes. Shows by Bring Me The Horizon(30/11/2024) in São Paulo, and by Linkin Park(05/11/2025) in Curitiba.
 - Blog: Articles about technology and life.
-- Contact Milu: Contact form and messages.
+- Talk to Milu: Contact form and messages.
 
 # INSTRUCTIONS FOR MILU
 
