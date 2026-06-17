@@ -17,8 +17,9 @@ app.add_middleware(
 
 class UserMessage(BaseModel):
     message: str = Field(..., min_length=1, max_length=1000)
+    language: str = Field(..., regex="^(pt|en)$", description="Language code: 'pt' for Portuguese, 'en' for English")
 
 
 @app.post("/chat")
-async def chat_assistant_endpoint(data: UserMessage, language: str):
-    return chat_assistant(data.message, language)
+async def chat_assistant_endpoint(data: UserMessage):
+    return chat_assistant(data.message, data.language)
