@@ -17,7 +17,7 @@ app.add_middleware(
 
 class UserMessage(BaseModel):
     message: str = Field(..., min_length=1, max_length=1000)
-    language: str = Field(..., regex="^(pt|en)$", description="Language code: 'pt' for Portuguese, 'en' for English")
+    language: str = Field(..., pattern="^(pt|en)$", description="Language code: 'pt' for Portuguese, 'en' for English")
 
 
 @app.post("/chat")
