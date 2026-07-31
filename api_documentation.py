@@ -10,6 +10,8 @@ The assistant is powered by the Gemini-2.5-Flash-Lite model and is tailored to p
 Only accepts POST requests to the /chat endpoint with a JSON body containing a "message" field.
 
 Not an open API, intended for use by the frontend of Minha História na Web project.
+
+Milu's responses are generated based on the retrieved context from the developer's portfolio. If the context does not contain the answer, Milu will politely inform the user that it specializes in presenting the Minha História na Web project and will not invent information.
 """
 
-VERSION = "1.0.1"
+VERSION = "1.1.1"
