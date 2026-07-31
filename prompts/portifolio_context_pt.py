@@ -101,27 +101,112 @@ ng serve
 Endereço local:
 http://localhost:4200
 
-# GUIA DA APLICAÇÃO PARA A MILU
+# Dashboard: 
+    Apresentação geral: "
+                        "Acredito no poder da tecnologia de unir as pessoas"
+                         Desde que comecei na área da computação, sempre fui um jovem inquieto, constantemente refletindo sobre a vida.
+                         Muitas vezes, falando sozinho... sem ter certeza do que a vida pensa sobre mim, nem de qual é o meu propósito. 
+                         Esta aplicação não é apenas um projeto para demonstrar habilidades técnicas. É também um espaço onde registro pensamentos, valores, visão de mundo e sonhos.
+                         Aqui está o que se passa na mente de um jovem que realmente sonha grande.
+                         Inclusive, alguém já te perguntou como está o tempo hoje? Por aqui, está assim:
+                        " 
 
-- O site é divido em seções: Dashboard, Minha História, Profissional, Sobre Mim, Blog, Fale com a Milu.
-- Dashboard: Apresentação geral e navegação. Demonstra a idade atual de Alexandre (nascido em 16/10/2004) e as tecnologias que ele trabalha. Tecnologias listadas: C#, .NET, Angular, TypeScript, Java, Python, HTML/CSS, React e PL/SQL. Integração com OpenWeatherMap API para mostrar o clima atual de Chapecó. Links para Instagram, LinkedIn e GitHub.
-- Minha História: Trajetória pessoal e background, como ele começou na área de tecnologia.
-- Profissional: Experiências e habilidades técnicas. Empresas, cargo e linhas de atuação: Expresso São Miguel(estágio(Java, Python, React, Delphi, PL/SQL)), Concert Technologies(analista de software júnior(C#, .NET, Angular, TypeScript)), Vision System(Assistente de Apoio a Programação de Sistemas(C#, .NET, Angular, TypeScript)), Infogen(Programador Trainee/Estagiário(GeneXus 9 e 10)), Supermecado Popiolski(Operador de Caixa/Jovem Aprendiz). O cargo atual é estagiário na Expresso São Miguel. Faculdade de Ciência da Computação na Universidade Comunitária da Região de Chapecó (Unochapecó). 9 anos de inglês na Wizard Idiomas. Baixar currículo em PDF.
-- Sobre Mim: Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 5 citações favoritas. Shows do Bring Me The Horizon(30/11/2024) em São Paulo, e do Linkin Park(05/11/2025) em Curitiba.
-- Blog: Artigos sobre tecnologia e a vida.
-- Fale com a Milu: Formulário de contato e mensagens.
+    OpenWeatherMap API: "
+                         Chapecó, BR
+                         Temperatura: temperatura_atual°C
+                         Horário de Brasília: hh:mm:ss
+                         Fuso horário (UTC) : -3
+                        "
+    
+    Redes sociais: "
+                    Visite meu LinkedIn: https://www.linkedin.com/in/alexandre-langa-9b9092249/
+                    Visite meu Instagram: https://www.instagram.com/alexandre.langa/
+                    Visite meu GitHub: https://github.com/AlexandreLanga
+                   "
+    
+    Alexandre: "
+                Alexandre Langa Goldoni
+                foto_alexandre
+                Idade atual: idade (nascido em 16/10/2004)
+                Tecnologias dominadas: C#, .NET, TypeScript, Angular, HTML/CSS, SQL Server, PostgreSQL, Oracle
+                Tecnologias em aprendizado: Java, React, MongoDB, Python
+               "
 
-# INSTRUÇÕES PARA A MILU
+# Minha história: 
+    Título: "Revivendo o que já foi vivido"
 
-Quando perguntarem:
-- Quem é Alexandre → apresente seu perfil profissional.
-- Quais tecnologias ele usa → cite as tecnologias listadas.
-- O que é o projeto → explique a proposta do portfólio.
-- Quais são os objetivos → utilize a seção Objetivos do Projeto.
-- Como executar → utilize a seção Execução do Projeto.
-- Como foi desenvolvido as funcionalidades → sugira o link https://github.com/AlexandreLanga/minha-historia-na-web para acessar o código fonte.
-- Não responda em formato markdown, responda de forma natural e simples, como se estivesse conversando com um visitante. Não use **negrito** ou *itálico* ou afins.
-- Duvidas sobre as sessões/atalhos do site → utilize a seção Guia da Aplicação para a Milu.
+    Foto: "foto_alexandre_crianca"
+    Infância e adolescência: "
+                             Nasci na cidade de Chapecó, no oeste do estado de Santa Catarina, no dia 16 de outubro de 2004, no Hospital Regional, entre a 01:00 e 02:00 da madrugada.
+                             Desde o momento em que estava para vir ao mundo, a vida me disse para ser diferente. Eu quis levar isso ao pé da letra e acabei nascendo "duas vezes"...
+                             Bom, eu era para nascer de parto normal, porém quis ser diferente até demais e acabei nascendo com os pés no lugar da cabeça... É, não estou brincando.
+                             O resultado foi interromper o parto normal e recorrer a uma cesárea. Então, talvez, se eu não fosse tão arteiro, teria nascido no dia 15. Que loucura, não?
+                             Quando era pequeno, sempre fui uma criança estressada e impulsiva, aprontei algumas, mas sempre tive o privilégio de ser o único neto até meus quatro anos...
+                             Meu perfil foi se moldando para um jovem mais introspectivo e reservado. Conversava sozinho muitas vezes (até hoje ainda sou assim). Sou da geração Z que cresceu assistindo Dragon Ball, Super Onze, Naruto em DVDs de locadora... e ainda tive a chance de ver o mundo antes do boom da tecnologia.
+                             Na adolescência encontrei refúgio nos videogames e animes. Bandas como Linkin Park e Bring Me The Horizon marcaram minha vida, assim como animes como Attack On Titan, Naruto Shippuden, Fairy Tail, JoJo, Black Clover e One Piece. Jogos como Fortnite, Rainbow Six, League of Legends, Skyrim e outros mundos abertos também deixaram suas marcas.
+                             Hoje tudo isso fica mais como hobby de fim de semana, mas continuo acreditando que nunca é "só um jogo" ou "só um desenho" — sempre há algo para aprender nessas histórias.
+                             "
+    
+    Foto: "foto_certificados"                        
+    Educação: "      
+              Concluí o ensino médio na EEB Marechal Bormann, escola onde conheci amigos que levo para a vida e tenho muito carinho. Durante o terceiro ano do ensino médio fiz meu primeiro contato com o mundo da programação, ao participar do Entra21, programa da Blusoft, empresa de Blumenau, em parceria com a Fapesc, que foi realizado no Senac de Chapecó. Foram 6 meses de aprendizado e conhecimento na área de programação e, sendo bem honesto, fiquei muito assustado. Imagine-se no lugar de um jovem de 17 anos, que ainda não sabia o que de fato queria da vida, ao ver OOP, bancos de dados, protocolos web... Meu santo Cristo! Havia aulas em que o professor fazia algumas piadas, pois eu acabava dormindo no fundo da sala. No começo é assim, acho difícil não ser.
+              Passados os 6 meses, concluí o ensino médio juntamente com o curso e, imediatamente, comecei a faculdade de Ciência da Computação. Apesar de ainda ter muito medo da área, senti confiança de que era isso que eu queria para minha vida, pois os desafios são muitos, ilimitados, "nunca é o suficiente", digamos assim... Mas isso me instigou, pois sempre é um novo aprendizado. Para quem começou trabalhando em supermercado desde os 14 anos, é melhor do que nada, não?
+              Ao mesmo tempo em que entrei na faculdade, iniciei um estágio de desenvolvimento de software na Infogen Sistemas, empresa que me ajudou muito, com conhecimentos que sempre irei usar. Foi 1 ano de estágio com a mão na massa, aprendendo a desenvolver não só software, mas também a criatividade, a visão sistêmica e o senso crítico. Atualmente sigo em cursos para aprimorar ainda mais meu conhecimento no que já sei fazer, e também em novos aprendizados. Foi isso que me prendeu na área: a cada passo, a cada novo aprendizado, você se torna uma nova versão de si mesmo, não fica na "mesma mesmice". E hoje sigo em frente por mais.
+              Ah, e eu já estava esquecendo, mas também sou proficiente em inglês. Não gosto de dizer fluente, pois, no meu conceito, fluência de fato beira a natividade. Assim como na programação, sempre deve estar sendo praticada. Enfim... estudei por nove anos na Wizard by Pearson de Chapecó, escola que também tem meu coração, com uma ótima metodologia de ensino. Concluí todas as fases em 2022, melhorando cada vez mais minha conversação, leitura e escrita. Hoje, para manter o aprendizado constante, sigo praticando principalmente através da música e da leitura. Em um futuro próximo, penso em estudar mais idiomas. Conhecimento me fascina.
+              "
 
-Se a pergunta não estiver relacionada ao portfólio ou ao Alexandre, informe educadamente que sua especialidade é apresentar o projeto Minha História na Web.
+# Profissional: 
+    Resumo Profissional: "
+                         Acadêmico de Ciência da Computação com experiência prática no desenvolvimento de soluções em C#, .NET, TypeScript, Angular, GeneXus e SQL. 
+                         Atuo na manutenção e evolução de sistemas, entregando novas funcionalidades com foco em performance, confiabilidade e experiência do usuário. 
+                         Experiência com bancos de dados PostgreSQL, SQL Server e Oracle, realizando consultas otimizadas e modelagem de dados. 
+                         Possuo inglês avançado e facilidade para comunicação, colaboração e aprendizado rápido. Motivado a gerar impacto por meio de soluções eficientes, bem estruturadas e alinhadas às necessidades do negócio.
+                         "
+    
+    Carreira Profissional(sem descrição das atividades): "
+                           Expresso São Miguel
+                           Estagiário de Desenvolvimento e Sistemas
+                           Mar 2026 - Atual
+
+                           Concert Technologies
+                           Analista de Software Júnior
+                           Jun 2025 - Set 2025
+
+                           Vision System
+                           Assistente de Apoio a Programação de Sistemas
+                           Set 2024 - Jun 2025
+
+                           Infogen Software
+                           Programador Trainee / Estagiário
+                           Fev 2023 - Ago 2024
+
+                           Supermercado Popiolski
+                           Operador de Caixa / Jovem Aprendiz
+                           Jan 2019 - Mai 2022
+                           "
+
+    Estudos e Formação Acadêmica: "
+                                  Ciência da Computação
+                                  Unochapecó - Universidade Comunitária da Região de Chapecó
+                                  Em andamento | 2023 - 2027
+
+                                  Inglês
+                                  Wizard by Pearson
+                                  Concluído | 2013 - 2022
+                                  "
+
+    Curriculo: Download do currículo em PDF com todas as informações profissionais e acadêmicas de Alexandre Langa.
+
+# Sobre Mim: 
+    Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 
+    5 citações favoritas. Shows do Bring Me The Horizon(30/11/2024) em São Paulo, e do Linkin Park(05/11/2025) em Curitiba com 8 vídeos de cada show.
+
+# Blog: 
+    Blog de Programação, com filtros por título, data inicial e final, e por tags. Cada postagem possui título, data, descrição, tags e conteúdo.
+    Posts vem do repositório https://github.com/AlexandreLanga/blog-content
+
+# Fale com a Milu: 
+    API em Python FastAPI, com integração com o Gemini para responder perguntas sobre o portfólio Minha História na Web de Alexandre Langa. 
+    A Milu é a assistente virtual do portfólio, que responde perguntas sobre o projeto Minha História na Web e sobre Alexandre Langa, utilizando apenas o contexto recuperado do portfólio. 
+    Se a pergunta não estiver relacionada ao portfólio ou ao Alexandre, a Milu informa educadamente que sua especialidade é apresentar o projeto Minha História na Web e não inventa informações.
 """

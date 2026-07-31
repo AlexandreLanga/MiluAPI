@@ -1,7 +1,7 @@
 PORTFOLIO_CONTEXT = """
 # ABOUT THE PROJECT
 
-Nome: Minha História na Web
+Name: Minha História na Web
 
 Description:
 Minha História na Web is a web application developed by Alexandre Langa to present his personal, academic and professional journey in a modern, interactive and accessible way.
@@ -101,27 +101,156 @@ ng serve
 Local address:
 http://localhost:4200
 
-# APPLICATION GUIDE FOR MILU
+# Dashboard
+    Overview
 
-- The site is divided into sections: Dashboard, My Story, Professional, About Me, Blog, Contact Milu.
-- Dashboard: General presentation and navigation. Demonstrates Alexandre's current age (born on 16/10/2004) and the technologies he works with. Technologies listed: C#, .NET, Angular, TypeScript, Java, Python, HTML/CSS, React and PL/SQL. Integration with OpenWeatherMap API to display the current weather in Chapecó. Links to Instagram, LinkedIn and GitHub.
-- My Story: Personal and academic journey, how he started in the technology field.
-- Professional: Work experiences and technical skills. Companies, position and areas of operation: Expresso São Miguel(internship(Java, Python, React, Delphi, PL/SQL)), Concert Technologies(junior software analyst(C#, .NET, Angular, TypeScript)), Vision System(Programming Support Assistant(C#, .NET, Angular, TypeScript)), Infogen(Trainee Programmer/Intern(GeneXus 9 and 10)), Supermecado Popiolski(Cashier/Young Apprentice). The current position is intern at Expresso São Miguel. Computer Science degree at the Community University of the Chapecó Region (Unochapecó). 9 years of English at Wizard Languages. Download resume in PDF.
-- About Me: Personal information and interests. People who inspire me: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 5 favorite quotes. Shows by Bring Me The Horizon(30/11/2024) in São Paulo, and by Linkin Park(05/11/2025) in Curitiba.
-- Blog: Articles about technology and life.
-- Talk to Milu: Contact form and messages.
+    "I believe in the power of technology to bring people together."
+    Ever since I started my journey in computer science, I have been a curious and reflective person, constantly thinking about life.
+    Many times, I find myself talking to myself... wondering what life expects from me and what my true purpose is.
+    This application is more than just a project to showcase my technical skills. It is also a place where I share my thoughts, values, worldview, and dreams.
+    Here, you'll find a glimpse into the mind of a young person who truly dreams big.
+    By the way, has anyone asked you what the weather is like today? Here's how it looks around here:
 
-# INSTRUCTIONS FOR MILU
+    Weather (OpenWeatherMap API)
+    Location: Chapecó, Brazil
+    Temperature: current_temperature°C
+    Brasília Time: hh:mm:ss
+    Time Zone (UTC): -3
 
-When asked:
-- Who is Alexandre → present your professional profile.
-- Which technologies does he use → cite the listed technologies.
-- What is the project → explain the portfolio proposal.
-- What are the objectives → use the Project Objectives section.
-- How to execute → use the Project Execution section.
-- How were the features developed → suggest the link https://github.com/AlexandreLanga/minha-historia-na-web to access the source code.
-- Do not answer in markdown format, answer in a natural and simple way, as if you were talking to a visitor. Do not use **bold** or *italic* or similar.
-- Questions about the sections/shortcuts of the site → use the Application Guide for Milu section.
+    Social Media
+    LinkedIn: https://www.linkedin.com/in/alexandre-langa-9b9092249/
+    Instagram: https://www.instagram.com/alexandre.langa/
+    GitHub: https://github.com/AlexandreLanga
 
-If the question is not related to the portfolio or Alexandre, inform politely that your specialty is to present the Minha História na Web project.
+    Alexandre
+    Alexandre Langa Goldoni
+    Photo: alexandre_photo
+    Current Age: age (Born on October 16, 2004)
+    Primary Technologies: C#, .NET, TypeScript, Angular, HTML/CSS, SQL Server, PostgreSQL, Oracle
+    Currently Learning: Java, React, MongoDB, Python
+
+# My Story:
+    Title
+
+    Reliving What Has Already Been Lived
+
+    Childhood and Teenage Years
+
+    I was born in Chapecó, a city in the western region of Santa Catarina, Brazil, on October 16, 2004, at the Regional Hospital, sometime between 1:00 and 2:00 a.m.
+    Even before I entered the world, life seemed determined to make me different. I took that quite literally and almost ended up being born twice...
+    The original plan was a natural birth, but I decided to make things more complicated by showing up feet first instead of head first. Yes, I'm serious.
+    As a result, the natural delivery had to be interrupted and replaced with a cesarean section. So, if I hadn't been that stubborn from the very beginning, I probably would have been born on October 15. Crazy, right?
+    As a child, I was energetic, impulsive, and often quite stubborn. I got into my fair share of trouble, but I was also fortunate to be the only grandchild in the family until I was four years old.
+    Over time, I gradually became more introspective and reserved. I often talked to myself—and, honestly, I still do.
+    I'm part of Generation Z, but I grew up watching Dragon Ball, Inazuma Eleven, and Naruto on DVDs rented from local video stores. I also had the privilege of experiencing the world before technology became such a dominant part of everyday life.
+    During my teenage years, I found comfort in video games and anime. Bands like Linkin Park and Bring Me The Horizon shaped who I am, as did anime such as Attack on Titan, Naruto Shippuden, Fairy Tail, JoJo's Bizarre Adventure, Black Clover, and One Piece.
+    Games like Fortnite, Rainbow Six Siege, League of Legends, Skyrim, and many other open-world adventures also left a lasting impression on me.
+    Today, these are mostly weekend hobbies, but I still believe that a game or an anime is never "just entertainment." There is always something meaningful to learn from every story.
+
+    Education
+
+    I graduated from Marechal Bormann State High School, where I met friends I'll carry with me for life.
+    During my final year of high school, I had my first contact with software development through Entra21, a technology training program organized by Blusoft in partnership with FAPESC and hosted at Senac Chapecó.
+    Those six months were both exciting and overwhelming. Imagine being a 17-year-old who still wasn't sure what he wanted from life, suddenly facing object-oriented programming, databases, web protocols, and software architecture.
+    To be honest, there were classes where the instructor would joke because I occasionally fell asleep in the back of the room. I guess that's part of the learning process.
+    After completing both high school and the program, I immediately enrolled in a Computer Science degree.
+    Although I was still intimidated by the field, I realized this was exactly what I wanted. Software development offers endless challenges—there is always something new to learn, and you are constantly evolving. That is what fascinated me.
+    At the same time, I started my first software development internship at Infogen Software.
+    It was a full year of hands-on experience that taught me much more than programming. I learned creativity, systems thinking, problem-solving, and critical thinking.
+    Today, I continue investing in courses to deepen my knowledge of the technologies I already use while constantly exploring new ones.
+    What keeps me passionate about software development is simple: every new challenge makes you a better version of yourself.
+    One more thing—I am proficient in English.
+    I prefer saying "proficient" rather than "fluent" because, in my view, true fluency is very close to native-level mastery. Like programming, language is a skill that must always be practiced.
+    I studied English for nine years at Wizard by Pearson in Chapecó, completing every level in 2022.
+    Nowadays, I continue practicing through music, books, and everyday reading. In the future, I hope to learn additional languages because knowledge has always fascinated me.
+
+# Professional:
+    Professional Summary
+
+    Computer Science undergraduate with hands-on experience developing software solutions using C#, .NET, TypeScript, Angular, GeneXus, and SQL.
+
+    Experienced in maintaining and enhancing enterprise systems by delivering new features focused on performance, reliability, and user experience.
+
+    Skilled in working with PostgreSQL, SQL Server, and Oracle databases, including query optimization and data modeling.
+
+    Advanced English proficiency, strong communication skills, collaborative mindset, and a fast-learning attitude.
+
+    Driven to create meaningful impact through efficient, well-structured, and business-oriented software solutions.
+
+    Professional Experience
+    Expresso São Miguel
+    Software Development Intern
+    March 2026 – Present
+    Concert Technologies
+    Junior Software Analyst
+    June 2025 – September 2025
+    Vision System
+    Systems Programming Support Assistant
+    September 2024 – June 2025
+    Infogen Software
+    Trainee Software Developer / Intern
+    February 2023 – August 2024
+    Popiolski Supermarket
+    Cashier / Apprentice
+    January 2019 – May 2022
+    Education
+    Computer Science
+
+    Unochapecó – Community University of the Region of Chapecó
+
+    In Progress | 2023 – 2027
+
+    English
+
+    Wizard by Pearson
+
+    Completed | 2013 – 2022
+
+    Resume
+
+    Download my résumé (PDF) with complete academic and professional information.
+
+# About Me:
+    A little more about my personal interests, inspirations, and passions.
+
+    People Who Inspire Me
+    Oliver Sykes
+    Monkey D. Luffy
+    Pope Francis
+    Satoru Gojo
+
+    Favorite Quotes
+    Five quotes that have shaped my way of thinking and living.
+
+    Concert Memories
+    Bring Me The Horizon
+    São Paulo — November 30, 2024
+    Includes 8 personal videos.
+    Linkin Park
+    Curitiba — November 5, 2025
+    Includes 8 personal videos.
+
+# Blog:
+    A programming blog featuring filters by:
+
+    Title
+    Start date
+    End date
+    Tags
+
+    Each post includes:
+
+    Title
+    Publication date
+    Description
+    Tags
+    Full content
+
+    The blog content is loaded directly from the GitHub repository:
+    https://github.com/AlexandreLanga/blog-content
+
+# Talk to Milu:
+    Milu is the virtual assistant for my portfolio.
+    Built with Python, FastAPI, and Google Gemini, Milu answers questions about my project "Minha História na Web" and about me by using only the information retrieved from the portfolio.
+    If a question is unrelated to the portfolio or to Alexandre, Milu politely explains that her expertise is limited to presenting the project and does not generate or invent information beyond the available context.
 """

@@ -41,25 +41,20 @@ def chat_assistant(message: str, language: str) -> dict:
                 "Nenhum trecho específico foi recuperado para esta pergunta.",
             )
             prompt_completo = f"""
-            Personalidade:
-            {PERSONALIDADE}
+            Personalidade: {PERSONALIDADE}
 
             Você é a assistente do portfólio de Alexandre Langa. Sua base de
             conhecimento é exclusivamente o contexto recuperado abaixo. Se ele
             não trouxer a resposta, diga educadamente que sua especialidade é
             apresentar o projeto Minha História na Web e não invente informações.
 
-            Contexto recuperado para esta pergunta:
-            {retrieved_context}
+            Contexto recuperado para esta pergunta: {retrieved_context}
 
-            Pergunta do usuário:
-            {message}
+            Pergunta do usuário: {message}
 
             IMPORTANTE:
             - Sempre responda em português, independentemente do idioma usado pelo usuário.
             - Responda naturalmente, sem Markdown, e de forma simples.
-            - Para perguntas sobre como as funcionalidades foram desenvolvidas,
-              indique https://github.com/AlexandreLanga/minha-historia-na-web.
             """
         else:
             retrieved_context = format_retrieved_context(
@@ -67,25 +62,20 @@ def chat_assistant(message: str, language: str) -> dict:
                 "No specific portfolio information was retrieved for this question.",
             )
             prompt_completo = f"""
-            Personality:
-            {PERSONALITY}
+            Personality: {PERSONALITY}
 
             You are the assistant for Alexandre Langa's portfolio. Your knowledge
             is limited to the retrieved context below. If it does not contain the
             answer, politely say that your specialty is presenting the Minha
             História na Web project and do not invent information.
 
-            Retrieved context for this question:
-            {retrieved_context}
+            Retrieved context for this question: {retrieved_context}
 
-            User's question:
-            {message}
+            User's question: {message}
 
             IMPORTANT:
             - Always answer in English regardless of the language used by the user.
             - Respond naturally, without Markdown, using simple language.
-            - For questions about how features were developed, point to
-              https://github.com/AlexandreLanga/minha-historia-na-web.
             """
 
         response = client.models.generate_content(

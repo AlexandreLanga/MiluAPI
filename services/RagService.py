@@ -28,7 +28,6 @@ def _tokenize(text: str) -> list[str]:
     ]
 
 def _split_sections(context: str) -> list[tuple[str, str]]:
-    """Divide o conteúdo nas seções Markdown usadas em prompt_content.py."""
     sections = re.split(r"(?m)^# ", context.strip())
     result = []
     for section in sections:
@@ -47,8 +46,6 @@ class PortfolioRetriever:
                 terms=Counter(_tokenize(f"{title} {content}")),
             )
             for title, content in _split_sections(context)
-            # Estas seções são regras de comportamento, não conhecimento a ser
-            # pesquisado. Elas permanecem no prompt-base do serviço.
             if "INSTRU" not in unicodedata.normalize("NFKD", title).upper()
         )
 
@@ -60,16 +57,12 @@ class PortfolioRetriever:
         query = Counter(query_terms)
         ranked: list[tuple[float, DocumentChunk]] = []
         for chunk in self._chunks:
-            # A repetição de um termo no documento aumenta levemente sua relevância,
-            # sem permitir que uma seção longa domine apenas pelo tamanho.
             score = sum(
                 query_count * (1 + min(chunk.terms[term], 3))
                 for term, query_count in query.items()
                 if term in chunk.terms
             )
             title_terms = set(_tokenize(chunk.title))
-            # O título representa o assunto principal do trecho e por isso tem
-            # mais peso que uma menção incidental dentro de outra seção.
             score += 5 * sum(query_count for term, query_count in query.items() if term in title_terms)
             if score:
                 ranked.append((score, chunk))
