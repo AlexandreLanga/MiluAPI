@@ -52,8 +52,6 @@ Quando a aplicação é iniciada, `MiluService.py` cria dois objetos `PortfolioR
 
 Os contextos são documentos Markdown organizados por títulos iniciados com `#`. O `RagService` separa cada título e seu conteúdo em um `DocumentChunk`. Por exemplo, a seção `# TECNOLOGIAS UTILIZADAS NO PROJETO` torna-se um trecho independente.
 
-As seções cujo título contém `INSTRU`/`INSTRUCTIONS` não entram no índice. Elas são regras de comportamento, não fatos do portfólio, e suas regras essenciais ficam no prompt-base.
-
 ### 2. Normalização da pergunta e dos documentos
 
 O algoritmo executa os mesmos passos nos textos do contexto e na pergunta:
