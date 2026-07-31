@@ -5,11 +5,18 @@ from dotenv import load_dotenv
 from fastapi import HTTPException
 from google import genai
 
-from prompt_content import CONTEXTO_PORTFOLIO, PERSONALIDADE, PORTFOLIO_CONTEXT, PERSONALITY
+from prompts.personality_pt import PERSONALIDADE
+from prompts.personality_en import PERSONALITY
+from prompts.portifolio_context_pt import CONTEXTO_PORTFOLIO
+from prompts.portifolio_context_en import PORTFOLIO_CONTEXT
+from services.RagService import PortfolioRetriever, format_retrieved_context
 
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
+
+PORTUGUESE_RETRIEVER = PortfolioRetriever(CONTEXTO_PORTFOLIO)
+ENGLISH_RETRIEVER = PortfolioRetriever(PORTFOLIO_CONTEXT)
 
 
 def chat_assistant(message: str, language: str) -> dict:
@@ -29,32 +36,56 @@ def chat_assistant(message: str, language: str) -> dict:
         client = genai.Client(api_key=api_key)
 
         if language == "pt":
+            retrieved_context = format_retrieved_context(
+                PORTUGUESE_RETRIEVER.retrieve(message),
+                "Nenhum trecho específico foi recuperado para esta pergunta.",
+            )
             prompt_completo = f"""
             Personalidade:
             {PERSONALIDADE}
 
-            Contexto sobre o desenvolvedor:
-            {CONTEXTO_PORTFOLIO}
+            Você é a assistente do portfólio de Alexandre Langa. Sua base de
+            conhecimento é exclusivamente o contexto recuperado abaixo. Se ele
+            não trouxer a resposta, diga educadamente que sua especialidade é
+            apresentar o projeto Minha História na Web e não invente informações.
+
+            Contexto recuperado para esta pergunta:
+            {retrieved_context}
 
             Pergunta do usuário:
             {message}
 
             IMPORTANTE:
             - Sempre responda em português, independentemente do idioma usado pelo usuário.
+            - Responda naturalmente, sem Markdown, e de forma simples.
+            - Para perguntas sobre como as funcionalidades foram desenvolvidas,
+              indique https://github.com/AlexandreLanga/minha-historia-na-web.
             """
         else:
+            retrieved_context = format_retrieved_context(
+                ENGLISH_RETRIEVER.retrieve(message),
+                "No specific portfolio information was retrieved for this question.",
+            )
             prompt_completo = f"""
             Personality:
             {PERSONALITY}
 
-            Context about the developer:
-            {PORTFOLIO_CONTEXT}
+            You are the assistant for Alexandre Langa's portfolio. Your knowledge
+            is limited to the retrieved context below. If it does not contain the
+            answer, politely say that your specialty is presenting the Minha
+            História na Web project and do not invent information.
+
+            Retrieved context for this question:
+            {retrieved_context}
 
             User's question:
             {message}
 
             IMPORTANT:
             - Always answer in English regardless of the language used by the user.
+            - Respond naturally, without Markdown, using simple language.
+            - For questions about how features were developed, point to
+              https://github.com/AlexandreLanga/minha-historia-na-web.
             """
 
         response = client.models.generate_content(
