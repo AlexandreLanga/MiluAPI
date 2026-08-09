@@ -1,7 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
-from services.MiluService import chat_assistant
+from services.MiluService import UserMessage, chat_assistant, websocket_chat
 from api_documentation import TITLE, DESCRIPTION, VERSION
 
 app = FastAPI(title=TITLE, description=DESCRIPTION, version=VERSION)
@@ -10,16 +9,16 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://alexandrelanga.github.io"],
     allow_credentials=True,
-    allow_methods=["POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-class UserMessage(BaseModel):
-    message: str = Field(..., min_length=1, max_length=1000)
-    language: str = Field(..., pattern="^(pt|en)$", description="Language code: 'pt' for Portuguese, 'en' for English")
 
 
 @app.post("/chat")
 async def chat_assistant_endpoint(data: UserMessage):
     return chat_assistant(data.message, data.language)
+
+
+@app.websocket("/chat")
+async def websocket_chat_route(websocket: WebSocket):
+    await websocket_chat(websocket)
