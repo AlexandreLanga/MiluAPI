@@ -210,7 +210,11 @@ http://localhost:4200
 
 
 # Sobre Mim: 
-    Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 
+    Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo.
+    Oliver Sykes: Músico britânico, mais conhecido como o vocalista principal da banda de rock/metal Bring Me the Horizon. É uma grande inspiração por sua incrível evolução artística, resiliência ao superar lutas pessoais (como o vício e desafios de saúde mental) e sua reinvenção ousada de estilo musical, transformando vulnerabilidade em arte e moda impactantes.
+    Monkey D. Luffy: O protagonista da série de mangá e anime One Piece, criada por Eiichiro Oda. Luffy é um pirata que sonha em encontrar o tesouro supremo, o One Piece, para se tornar o Rei dos Piratas. Ele inspira por sua busca inabalável pela liberdade, lealdade feroz aos seus amigos, otimismo incansável e sua recusa em se curvar à tirania ou à injustiça, lutando sempre pelos oprimidos.
+    Papa Francisco: O líder da Igreja Católica e soberano do Estado da Cidade do Vaticano. Nascido Jorge Mario Bergoglio na Argentina, ele é o primeiro papa das Américas e o primeiro do Hemisfério Sul. Inspira por sua profunda humildade, sua defesa incansável dos pobres, marginalizados e refugiados, e sua abordagem progressista e empática diante de questões sociais e ambientais globais.
+    Satoru Gojo: Personagem fictício da série de mangá e anime Jujutsu Kaisen, criada por Gege Akutami. Amplamente reconhecido como o feiticeiro mais forte do mundo, Gojo possui um poder imenso e uma personalidade brincalhona e despreocupada. Apesar de sua força incomparável e do peso de sua herança, ele se importa profundamente em mentorar a próxima geração de feiticeiros para reformar um sistema corrompido de dentro para fora. 
     5 citações favoritas. Shows do Bring Me The Horizon(30/11/2024) em São Paulo, e do Linkin Park(05/11/2025) em Curitiba com 8 vídeos de cada show.
 
 # Blog: 

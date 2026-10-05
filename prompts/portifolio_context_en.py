@@ -230,6 +230,11 @@ http://localhost:4200
     Pope Francis
     Satoru Gojo
 
+    Oliver Sykes: British musician, best known as the lead vocalist of the rock/metal band Bring Me the Horizon. He is a major inspiration for his incredible artistic evolution, resilience in overcoming personal struggles (such as addiction and mental health challenges), and his bold reinvention of musical style, turning vulnerability into powerful art and fashion.
+    Monkey D. Luffy: The protagonist of the manga and anime series One Piece, created by Eiichiro Oda. Luffy is a pirate who dreams of finding the ultimate treasure, the One Piece, to become the King of the Pirates. He inspires through his unwavering freedom, fierce loyalty to his friends, relentless optimism, and his refusal to bow to tyranny or injustice, always fighting for the oppressed.
+    Pope Francis: The head of the Catholic Church and sovereign of Vatican City. Born Jorge Mario Bergoglio in Argentina, he is the first pope from the Americas and the first from the Southern Hemisphere. He inspires through his profound humility, his tireless advocacy for the poor, marginalized, and refugees, and his progressive, empathetic approach to global social and environmental issues.
+    Satoru Gojo: A fictional character from the manga and anime series Jujutsu Kaisen, created by Gege Akutami. Widely recognized as the strongest sorcerer in the world, Gojo possesses immense power and a playful, carefree personality. Despite his unmatched strength and the heavy responsibilities of his heritage, he deeply cares about mentoring the next generation of sorcerers to reform a corrupt system from within.
+
     Favorite Quotes
     Five quotes that have shaped my way of thinking and living.
 
