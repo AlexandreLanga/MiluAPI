@@ -35,6 +35,7 @@ Resposta JSON
 │   ├── portifolio_context_pt.py     # Conhecimento do portfólio em português
 │   └── portifolio_context_en.py     # Conhecimento do portfólio em inglês
 └── services/
+    ├── RateLimitMiddleware.py       # Rate limit para HTTP e WebSocket
     ├── MiluService.py               # Orquestra RAG, prompt e Gemini
     └── RagService.py                # Índice e algoritmo de recuperação
 ```
@@ -218,4 +219,7 @@ Para desenvolvimento local ou outro frontend, ajuste `allow_origins` em `main.py
 
 - Nunca versione o arquivo `.env` ou a chave `GEMINI_API_KEY`.
 - Mantenha a lista de origens CORS específica em produção.
-- O endpoint limita a mensagem a 1000 caracteres, mas não possui autenticação própria. Caso seja exposto publicamente, considere rate limiting e autenticação no proxy ou na própria aplicação.
+- O endpoint limita cada mensagem a 1000 caracteres e permite até 10 mensagens por IP a cada 60 segundos; respostas acima do limite usam HTTP `429` e informam quando tentar novamente pelo cabeçalho `Retry-After`.
+- As chamadas ao Gemini têm timeout de 30 segundos. A rota HTTP síncrona é executada no thread pool do FastAPI para não bloquear o event loop.
+- O rate limit em memória é local a cada processo e não substitui controles de borda. Em implantações com múltiplos workers ou réplicas, configure também um limite compartilhado no proxy ou gateway.
+- A API não possui autenticação própria. Caso seja exposta publicamente, considere autenticação e controles adicionais no proxy ou gateway.
