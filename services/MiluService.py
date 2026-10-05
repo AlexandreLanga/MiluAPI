@@ -4,6 +4,7 @@ import logging
 from dotenv import load_dotenv
 from fastapi import HTTPException, WebSocket, WebSocketDisconnect
 from google import genai
+from google.genai import types
 from pydantic import BaseModel, Field, ValidationError
 
 from prompts.personality_pt import PERSONALIDADE
@@ -16,6 +17,7 @@ load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
+GEMINI_TIMEOUT_MS = 30_000
 PORTUGUESE_RETRIEVER = PortfolioRetriever(CONTEXTO_PORTFOLIO)
 ENGLISH_RETRIEVER = PortfolioRetriever(PORTFOLIO_CONTEXT)
 
@@ -87,7 +89,10 @@ def chat_assistant(message: str, language: str) -> dict:
                 )
             )
 
-        client = genai.Client(api_key=api_key)
+        client = genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
+        )
         prompt_completo = _build_prompt(message, language)
 
         response = client.models.generate_content(
@@ -225,7 +230,10 @@ async def chat_assistant_stream(message: str, language: str):
                 )
             )
 
-        async with genai.Client(api_key=api_key).aio as client:
+        async with genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
+        ).aio as client:
             prompt_completo = _build_prompt(message, language)
             chat = client.chats.create(model="gemini-2.5-flash-lite")
 
