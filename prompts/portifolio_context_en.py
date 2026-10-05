@@ -210,6 +210,17 @@ http://localhost:4200
 
     Download my résumé (PDF) with complete academic and professional information.
 
+# Projects:
+    The Projects tab presents a collection of Alexandre Langa's projects as cards. Each card may show an image, name, short description, status, technologies, and available actions. The "Learn more" action opens the project details, including its full description, status, technologies, results and impact, along with any available links to download, view an English video demo, or access the repository.
+
+    Booker
+    Status: Completed
+    Description: A desktop digital library built with Python and Tkinter to organize local books and make reading PDF, EPUB, and TXT files easier.
+    Technologies: Python and SQLite.
+    Features: Import local books; search by title, author, category, and tags; filter the library; read documents page by page; adjust zoom; search text excerpts; add page-specific notes; and save reading progress to continue later.
+    Results and impact: Turns local files into a more organized personal library and supports a consistent reading habit by preserving progress, notes, and highlights. It demonstrates a complete Python desktop solution with SQLite persistence and support for different document formats.
+    Available project actions: download the executable, view the demo, and access the repository. The link addresses should be checked on the project page.
+
 # About Me:
     A little more about my personal interests, inspirations, and passions.
 

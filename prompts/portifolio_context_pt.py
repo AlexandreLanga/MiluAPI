@@ -197,6 +197,18 @@ http://localhost:4200
 
     Curriculo: Download do currículo em PDF com todas as informações profissionais e acadêmicas de Alexandre Langa.
 
+# Projetos:
+    A aba Projetos apresenta uma coleção dos projetos de Alexandre Langa em cartões. Cada cartão pode exibir imagem, nome, descrição resumida, status, tecnologias e ações disponíveis. A ação "Ver mais" abre os detalhes do projeto, que incluem descrição completa, status, tecnologias utilizadas, resultados e impacto, além dos links disponíveis para baixar, ver uma demonstração de vídeo em inglês ou acessar o repositório.
+
+    Booker
+    Status: Concluído
+    Descrição: Biblioteca digital para desktop, desenvolvida em Python com Tkinter, que organiza livros locais e facilita a leitura de arquivos PDF, EPUB e TXT.
+    Tecnologias utilizadas: Python e SQLite.
+    Funcionalidades: Importar livros locais; pesquisar por título, autor, categoria e tags; filtrar a biblioteca; ler documentos em páginas; ajustar o zoom; pesquisar trechos; registrar anotações por página; e salvar o progresso para continuar a leitura depois.
+    Resultados e impacto: Transforma arquivos locais em uma biblioteca pessoal mais organizada e dá continuidade ao hábito de leitura, preservando progresso, anotações e marcações. Demonstra uma solução desktop completa em Python, com persistência em SQLite e suporte a diferentes formatos de documento.
+    Ações disponíveis no projeto: baixar o executável, ver a demonstração e acessar o repositório. Os endereços desses links devem ser consultados na página do projeto.
+
+
 # Sobre Mim: 
     Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo. 
     5 citações favoritas. Shows do Bring Me The Horizon(30/11/2024) em São Paulo, e do Linkin Park(05/11/2025) em Curitiba com 8 vídeos de cada show.
