@@ -149,14 +149,13 @@ Tecnologias: Python e FastAPI
 
 Por padrão, a API estará disponível em `http://127.0.0.1:8000`. A documentação interativa do FastAPI estará em `http://127.0.0.1:8000/docs`.
 
-Para produção com mais de um worker ou réplica, configure uma instância Redis compartilhada antes de iniciar a API:
+O rate limit usa memória local do processo e não depende de Redis. A variável `RATE_LIMIT_REDIS_URL`, se ainda estiver cadastrada no Render, é ignorada:
 
 ```env
-RATE_LIMIT_REDIS_URL=redis://localhost:6379/0
 MAX_GEMINI_CONCURRENT_REQUESTS=5
 ```
 
-Sem `RATE_LIMIT_REDIS_URL`, a aplicação usa um rate limit em memória, adequado apenas para desenvolvimento ou uma única instância. Se o Redis configurado ficar indisponível, a API falha de forma fechada e retorna `503` em vez de ignorar o limite.
+Esse modo é adequado para a implantação atual de instância única. Os contadores são reiniciados quando o processo reinicia ou desperta após ficar inativo; para múltiplas instâncias, use um rate limit no gateway ou reavalie um armazenamento compartilhado.
 
 ## API
 
@@ -213,7 +212,7 @@ O campo `message` é texto gerado pelo modelo; portanto, seu conteúdo exato pod
 | `413 Payload Too Large` | Corpo da requisição excede 16 KiB. |
 | `500 Internal Server Error` | A variável `GEMINI_API_KEY` não foi configurada. |
 | `502 Bad Gateway` | O Gemini retornou uma resposta vazia. |
-| `503 Service Unavailable` | Falha no provedor, limite de concorrência ou indisponibilidade do Redis. A API retorna uma mensagem para tentar novamente mais tarde. |
+| `503 Service Unavailable` | Falha no provedor ou limite de concorrência. A API retorna uma mensagem para tentar novamente mais tarde. |
 | `429 Too Many Requests` | Mais de 10 chamadas por IP em uma janela móvel de 60 segundos; consulte `Retry-After`. |
 
 ### WebSocket `/chat`
@@ -222,7 +221,7 @@ O WebSocket aceita uma mensagem JSON com os mesmos campos `message` e `language`
 
 ### Health check
 
-`GET /healthz` retorna `{"status":"ok"}` para verificações de disponibilidade do processo. Esse endpoint é de liveness e não garante que o Gemini ou o Redis estejam disponíveis.
+`GET /healthz` retorna `{"status":"ok"}` para verificações de disponibilidade do processo. Esse endpoint é de liveness e não garante que o Gemini esteja disponível.
 
 ## CORS
 
@@ -239,7 +238,7 @@ Para desenvolvimento local ou outro frontend, ajuste `allow_origins` em `main.py
 - Nunca versione o arquivo `.env` ou a chave `GEMINI_API_KEY`; configure segredos no gerenciador de segredos da plataforma em produção.
 - CORS restringe origens de navegador, mas não autentica clientes nem impede chamadas feitas por scripts. `allow_credentials` está desabilitado.
 - Cada mensagem continua limitada a 1000 caracteres e o corpo HTTP/WebSocket a 16 KiB.
-- O rate limit é de 10 chamadas por IP em 60 segundos. Com `RATE_LIMIT_REDIS_URL`, a contagem usa uma janela móvel atômica compartilhada entre workers e réplicas; sem Redis, ela é apenas local ao processo.
+- O rate limit é de 10 chamadas por IP em 60 segundos e é local ao processo. Em Render Free, os contadores zeram quando o serviço desperta após inatividade ou reinicia; para múltiplas instâncias, aplique rate limit no gateway.
 - O limite de chamadas simultâneas ao Gemini é configurável por `MAX_GEMINI_CONCURRENT_REQUESTS` (padrão: 5, por processo). Pedidos que não obtêm capacidade em um segundo recebem `503`; dimensione o valor de acordo com a quota do provedor e o número de workers.
 - O cliente assíncrono Gemini é criado uma vez por processo e encerrado no shutdown. A chamada HTTP não bloqueia o event loop; ambas as rotas compartilham o limite de concorrência.
 - Os limites por IP dependem do endereço que o servidor observa. Atrás de proxy, configure o encaminhamento de IPs confiáveis no servidor e no gateway; não confie indiscriminadamente em cabeçalhos enviados por clientes.

@@ -9,7 +9,6 @@ from fastapi import FastAPI, HTTPException, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from google import genai
 from google.genai import types
-from redis.asyncio import Redis
 from starlette.types import ASGIApp, Receive, Scope, Send
 
 from api_documentation import DESCRIPTION, TITLE, VERSION
@@ -25,7 +24,6 @@ from services.RateLimitMiddleware import (
     PayloadLimitMiddleware,
     RATE_LIMIT_REQUESTS,
     RATE_LIMIT_WINDOW_SECONDS,
-    RedisRateLimiter,
 )
 
 load_dotenv()
@@ -43,48 +41,27 @@ async def lifespan(app: FastAPI):
     app.state.gemini_semaphore = asyncio.Semaphore(
         MAX_GEMINI_CONCURRENT_REQUESTS
     )
-    redis_client = None
-    redis_url = os.getenv("RATE_LIMIT_REDIS_URL")
+    app.state.rate_limiter = InMemoryRateLimiter(
+        RATE_LIMIT_REQUESTS,
+        RATE_LIMIT_WINDOW_SECONDS,
+    )
+    logging.warning(
+        "Using process-local rate limiting; counters reset when the process restarts."
+    )
 
-    try:
-        if redis_url:
-            redis_client = Redis.from_url(
-                redis_url,
-                decode_responses=True,
-                socket_connect_timeout=2,
-                socket_timeout=2,
-            )
-            await redis_client.ping()
-            app.state.rate_limiter = RedisRateLimiter(
-                redis_client,
-                RATE_LIMIT_REQUESTS,
-                RATE_LIMIT_WINDOW_SECONDS,
-            )
-        else:
-            logging.warning(
-                "Using process-local rate limiting; configure "
-                "RATE_LIMIT_REDIS_URL before running multiple workers or replicas."
-            )
-            app.state.rate_limiter = InMemoryRateLimiter(
-                RATE_LIMIT_REQUESTS,
-                RATE_LIMIT_WINDOW_SECONDS,
-            )
-
-        api_key = os.getenv("GEMINI_API_KEY")
-        if api_key:
-            async with genai.Client(
-                api_key=api_key,
-                http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
-            ).aio as gemini_client:
-                app.state.gemini_client = gemini_client
-                yield
-        else:
-            app.state.gemini_client = None
+    api_key = os.getenv("GEMINI_API_KEY")
+    if api_key:
+        async with genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
+        ).aio as gemini_client:
+            app.state.gemini_client = gemini_client
             yield
-    finally:
+    else:
         app.state.gemini_client = None
-        if redis_client is not None:
-            await redis_client.aclose()
+        yield
+
+    app.state.gemini_client = None
 
 
 class RequestMetricsMiddleware:

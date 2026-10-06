@@ -42,6 +42,19 @@ def test_rate_limit_returns_retry_after_header(client):
     assert int(response.headers["Retry-After"]) > 0
 
 
+def test_redis_environment_variable_is_ignored(monkeypatch):
+    monkeypatch.setenv(
+        "RATE_LIMIT_REDIS_URL",
+        "redis://this-host-does-not-exist:6379/0",
+    )
+
+    with TestClient(app) as test_client:
+        response = test_client.get("/healthz")
+
+        assert response.status_code == 200
+        assert isinstance(app.state.rate_limiter, main.InMemoryRateLimiter)
+
+
 def test_rejects_oversized_websocket_payload(client):
     with client.websocket_connect("/chat") as websocket:
         websocket.send_text("x" * (16 * 1024 + 1))

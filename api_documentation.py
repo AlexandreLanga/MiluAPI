@@ -13,7 +13,7 @@ Not an open API, intended for use by the frontend of Minha História na Web proj
 
 Milu's responses are generated based on the retrieved context from the developer's portfolio. If the context does not contain the answer, Milu will politely inform the user that it specializes in presenting the Minha História na Web project and will not invent information.
 
-The API limits request payloads to 16 KiB, applies per-IP rate limits, and caps concurrent requests to the Gemini provider. Configure RATE_LIMIT_REDIS_URL to share rate-limit state across workers and replicas.
+The API limits request payloads to 16 KiB, applies process-local per-IP rate limits, and caps concurrent requests to the Gemini provider.
 """
 
 VERSION = "1.1.1"

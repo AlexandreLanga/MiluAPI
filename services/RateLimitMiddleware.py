@@ -1,14 +1,9 @@
 from collections import deque
-from hashlib import sha256
 import json
-import logging
 from math import ceil
 from threading import Lock
 from time import monotonic
-from uuid import uuid4
 
-from redis.asyncio import Redis
-from redis.exceptions import RedisError
 from starlette.responses import JSONResponse
 from starlette.types import ASGIApp, Receive, Scope, Send
 from starlette.websockets import WebSocketDisconnect
@@ -17,24 +12,6 @@ RATE_LIMIT_REQUESTS = 10
 RATE_LIMIT_WINDOW_SECONDS = 60
 CHAT_PATH = "/chat"
 MAX_CHAT_BODY_BYTES = 16 * 1024
-
-_REDIS_RATE_LIMIT_SCRIPT = """
-local time = redis.call('TIME')
-local now = (tonumber(time[1]) * 1000) + math.floor(tonumber(time[2]) / 1000)
-local window = tonumber(ARGV[1])
-local cutoff = now - window
-redis.call('ZREMRANGEBYSCORE', KEYS[1], '-inf', cutoff)
-local count = redis.call('ZCARD', KEYS[1])
-
-if count >= tonumber(ARGV[2]) then
-    local oldest = redis.call('ZRANGE', KEYS[1], 0, 0, 'WITHSCORES')
-    return math.max(1, math.ceil((tonumber(oldest[2]) + window - now) / 1000))
-end
-
-redis.call('ZADD', KEYS[1], now, ARGV[3])
-redis.call('PEXPIRE', KEYS[1], window + 1000)
-return 0
-"""
 
 
 class InMemoryRateLimiter:
@@ -70,30 +47,6 @@ class InMemoryRateLimiter:
                     del self._requests[key]
 
         return None
-
-
-class RedisRateLimiter:
-    def __init__(
-        self,
-        client: Redis,
-        limit: int,
-        window_seconds: int,
-    ):
-        self._client = client
-        self._limit = limit
-        self._window_milliseconds = window_seconds * 1000
-
-    async def retry_after(self, client_id: str) -> int | None:
-        client_key = sha256(client_id.encode("utf-8")).hexdigest()
-        retry_after = await self._client.eval(
-            _REDIS_RATE_LIMIT_SCRIPT,
-            1,
-            f"milu:rate-limit:{client_key}",
-            self._window_milliseconds,
-            self._limit,
-            uuid4().hex,
-        )
-        return int(retry_after) or None
 
 
 class PayloadLimitMiddleware:
@@ -226,13 +179,7 @@ class ChatRateLimitMiddleware:
         client = scope.get("client")
         client_id = client[0] if client else "unknown"
         limiter = scope["app"].state.rate_limiter
-
-        try:
-            retry_after = await limiter.retry_after(client_id)
-        except RedisError:
-            logging.exception("Rate-limit storage is unavailable")
-            await self._unavailable(scope, receive, send)
-            return
+        retry_after = await limiter.retry_after(client_id)
 
         if retry_after is None:
             await self.app(scope, receive, send)
@@ -255,30 +202,6 @@ class ChatRateLimitMiddleware:
                     {
                         "type": "error",
                         "detail": "Rate limit exceeded. Please try again later.",
-                    }
-                ),
-            }
-        )
-        await send({"type": "websocket.close", "code": 1013})
-
-    @staticmethod
-    async def _unavailable(scope: Scope, receive: Receive, send: Send) -> None:
-        if scope["type"] == "http":
-            response = JSONResponse(
-                status_code=503,
-                content={"detail": "Rate limiting is temporarily unavailable."},
-            )
-            await response(scope, receive, send)
-            return
-
-        await send({"type": "websocket.accept"})
-        await send(
-            {
-                "type": "websocket.send",
-                "text": json.dumps(
-                    {
-                        "type": "error",
-                        "detail": "Rate limiting is temporarily unavailable.",
                     }
                 ),
             }
