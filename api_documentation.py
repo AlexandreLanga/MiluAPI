@@ -7,11 +7,13 @@ Milu is a conversational AI designed to assist users with various queries about 
 
 The assistant is powered by the Gemini-2.5-Flash-Lite model and is tailored to provide responses based on a specific personality and context related to the developer's portfolio.
 
-Only accepts POST requests to the /chat endpoint with a JSON body containing a "message" field.
+Accepts POST requests and WebSocket connections at /chat. The HTTP JSON body contains "message" and "language" fields. Each WebSocket connection sends one JSON message with the same fields and receives chunk, done, or error events.
 
 Not an open API, intended for use by the frontend of Minha História na Web project.
 
 Milu's responses are generated based on the retrieved context from the developer's portfolio. If the context does not contain the answer, Milu will politely inform the user that it specializes in presenting the Minha História na Web project and will not invent information.
+
+The API limits request payloads to 16 KiB, applies process-local per-IP rate limits, and caps concurrent requests to the Gemini provider.
 """
 
 VERSION = "1.1.1"

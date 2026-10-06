@@ -1,10 +1,10 @@
-import os
+import asyncio
 import logging
+from time import perf_counter
 
 from dotenv import load_dotenv
 from fastapi import HTTPException, WebSocket, WebSocketDisconnect
-from google import genai
-from google.genai import types
+from google.genai.client import AsyncClient
 from pydantic import BaseModel, Field, ValidationError
 
 from prompts.personality_pt import PERSONALIDADE
@@ -75,27 +75,26 @@ def _build_prompt(message: str, language: str) -> str:
             """
 
 
-def chat_assistant(message: str, language: str) -> dict:
-    try:
-        api_key = os.getenv("GEMINI_API_KEY")
-
-        if not api_key:
-            raise HTTPException(
-                status_code=500,
-                detail=(
-                    "Au au! Parece que minha coleira de API não está configurada."
-                    if language == "pt"
-                    else "Woof woof! It seems like my API leash isn't set up."
-                )
-            )
-
-        client = genai.Client(
-            api_key=api_key,
-            http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
+async def chat_assistant(
+    message: str,
+    language: str,
+    client: AsyncClient | None,
+) -> dict:
+    if client is None:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Au au! Parece que minha coleira de API não está configurada."
+                if language == "pt"
+                else "Woof woof! It seems like my API leash isn't set up."
+            ),
         )
+
+    started_at = perf_counter()
+    try:
         prompt_completo = _build_prompt(message, language)
 
-        response = client.models.generate_content(
+        response = await client.models.generate_content(
             model="gemini-2.5-flash-lite",
             contents=prompt_completo
         )
@@ -108,6 +107,10 @@ def chat_assistant(message: str, language: str) -> dict:
                 else "Woof woof! I tried to think of a response but couldn't come up with one. I'm barking at my humans to get this fixed as soon as possible!"
             )
 
+        logging.info(
+            "gemini_request outcome=success duration_ms=%.2f",
+            (perf_counter() - started_at) * 1000,
+        )
         return {
             "success": True,
             "message": response.text
@@ -119,6 +122,10 @@ def chat_assistant(message: str, language: str) -> dict:
     except Exception as e:
         logging.exception("Erro ao processar chat" if language == "pt" else "Error processing chat")
 
+        logging.info(
+            "gemini_request outcome=failure duration_ms=%.2f",
+            (perf_counter() - started_at) * 1000,
+        )
         error_message = str(e).lower()
 
         if any(term in error_message for term in [
@@ -216,29 +223,27 @@ def _chunk_to_text(chunk) -> str | None:
     )
 
 
-async def chat_assistant_stream(message: str, language: str):
+async def chat_assistant_stream(
+    message: str,
+    language: str,
+    client: AsyncClient | None,
+):
+    if client is None:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Au au! Parece que minha coleira de API não está configurada."
+                if language == "pt"
+                else "Woof woof! It seems like my API leash isn't set up."
+            ),
+        )
+
     try:
-        api_key = os.getenv("GEMINI_API_KEY")
+        prompt_completo = _build_prompt(message, language)
+        chat = client.chats.create(model="gemini-2.5-flash-lite")
 
-        if not api_key:
-            raise HTTPException(
-                status_code=500,
-                detail=(
-                    "Au au! Parece que minha coleira de API não está configurada."
-                    if language == "pt"
-                    else "Woof woof! It seems like my API leash isn't set up."
-                )
-            )
-
-        async with genai.Client(
-            api_key=api_key,
-            http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
-        ).aio as client:
-            prompt_completo = _build_prompt(message, language)
-            chat = client.chats.create(model="gemini-2.5-flash-lite")
-
-            async for chunk in await chat.send_message_stream(prompt_completo):
-                yield chunk
+        async for chunk in await chat.send_message_stream(prompt_completo):
+            yield chunk
 
     except HTTPException:
         raise
@@ -311,7 +316,11 @@ async def chat_assistant_stream(message: str, language: str):
         )
 
 
-async def websocket_chat(websocket: WebSocket):
+async def websocket_chat(
+    websocket: WebSocket,
+    client: AsyncClient | None,
+    semaphore: asyncio.Semaphore,
+) -> None:
     await websocket.accept()
 
     try:
@@ -329,16 +338,41 @@ async def websocket_chat(websocket: WebSocket):
             await websocket.close(code=1003)
             return
 
-        async for chunk in chat_assistant_stream(data.message, data.language):
-            text = _chunk_to_text(chunk)
-            if text:
-                await websocket.send_json({"type": "chunk", "text": text})
+        try:
+            await asyncio.wait_for(semaphore.acquire(), timeout=1)
+        except TimeoutError:
+            await websocket.send_json(
+                {"type": "error", "detail": "The service is busy. Please try again."}
+            )
+            await websocket.close(code=1013)
+            return
+
+        try:
+            async for chunk in chat_assistant_stream(
+                data.message,
+                data.language,
+                client,
+            ):
+                text = _chunk_to_text(chunk)
+                if text:
+                    await websocket.send_json({"type": "chunk", "text": text})
+        finally:
+            semaphore.release()
 
         await websocket.send_json({"type": "done"})
         await websocket.close()
 
     except WebSocketDisconnect:
         return
+    except HTTPException as exc:
+        await websocket.send_json({"type": "error", "detail": exc.detail})
+        await websocket.close(code=1011)
     except Exception as exc:
-        await websocket.send_json({"type": "error", "detail": str(exc)})
+        logging.exception("Unexpected WebSocket chat failure")
+        await websocket.send_json(
+            {
+                "type": "error",
+                "detail": "An unexpected error occurred. Please try again later.",
+            }
+        )
         await websocket.close(code=1011)
