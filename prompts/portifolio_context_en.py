@@ -229,6 +229,14 @@ http://localhost:4200
     Results and impact: The project centralizes useful address and weather services in a documented API, with explicit error handling and security and resilience controls. Automated tests, Actuator health checks, running in Docker as a non-privileged user, and validations in GitHub Actions support the quality and operation of the application.
     Available project actions: access the repository. access the API service.
 
+    langa-ai-agents
+    Status: In progress
+    Description: Repository of AI agent profiles to support software development, with specific guides for different stacks.
+    Technologies: GitHub Copilot, Markdown, Python, Java/Spring Boot, .NET, Angular.
+    Features: Provides AI agent profiles for different software development stacks, with guides and usage examples.
+    Results and impact: Facilitates software development by providing pre-configured and documented AI agents, promoting efficiency and standardization in development practices.
+    Available project actions: access the repository.
+
 # About Me:
     A little more about my personal interests, inspirations, and passions.
 

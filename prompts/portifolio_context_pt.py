@@ -216,6 +216,14 @@ http://localhost:4200
     Resultados e impacto: O projeto centraliza serviços úteis de endereço e clima em uma API documentada, com tratamento explícito de erros e controles de segurança e resiliência. Testes automatizados, health check do Actuator, execução em Docker como usuário sem privilégios e validações no GitHub Actions apoiam a qualidade e a operação da aplicação.
     Ações disponíveis no projeto: acessar o repositório. acessar o serviço de API.
 
+    langa-ai-agents
+    Status: Desenvolvimento contínuo
+    Descrição: Repositório de perfis de agentes de IA para apoiar o desenvolvimento de software, com guias específicos para diferentes stacks.
+    Tecnologias utilizadas: GitHub Copilot, Markdown, Python, Java/Spring Boot, .NET, Angular.
+    Funcionalidades: Fornece perfis de agentes de IA para diferentes stacks de desenvolvimento de software, com guias e exemplos de uso.
+    Resultados e impacto: Facilita o desenvolvimento de software ao fornecer agentes de IA pré-configurados e documentados, promovendo eficiência e padronização nas práticas de desenvolvimento.
+    Ações disponíveis no projeto: acessar o repositório.
+
 # Sobre Mim: 
     Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo.
     Oliver Sykes: Músico britânico, mais conhecido como o vocalista principal da banda de rock/metal Bring Me the Horizon. É uma grande inspiração por sua incrível evolução artística, resiliência ao superar lutas pessoais (como o vício e desafios de saúde mental) e sua reinvenção ousada de estilo musical, transformando vulnerabilidade em arte e moda impactantes.
