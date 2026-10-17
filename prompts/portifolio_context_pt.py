@@ -208,6 +208,13 @@ http://localhost:4200
     Resultados e impacto: Transforma arquivos locais em uma biblioteca pessoal mais organizada e dá continuidade ao hábito de leitura, preservando progresso, anotações e marcações. Demonstra uma solução desktop completa em Python, com persistência em SQLite e suporte a diferentes formatos de documento.
     Ações disponíveis no projeto: baixar o executável, ver a demonstração e acessar o repositório. Os endereços desses links devem ser consultados na página do projeto.
 
+    api-utilidades
+    Status: Em andamento
+    Descrição: API REST em Java 21 e Spring Boot que reúne consulta de CEP e busca de endereços pelo ViaCEP, além de consultas de clima atual por cidade ou coordenadas via OpenWeatherMap.
+    Tecnologias utilizadas: Java 21, Spring Boot, ViaCEP API, OpenWeatherMap API, OpenAPI, Docker.
+    Funcionalidades: Consultar CEP; buscar endereços pelo ViaCEP; consultar clima atual por cidade ou coordenadas.
+    Resultados e impacto: O projeto centraliza serviços úteis de endereço e clima em uma API documentada, com tratamento explícito de erros e controles de segurança e resiliência. Testes automatizados, health check do Actuator, execução em Docker como usuário sem privilégios e validações no GitHub Actions apoiam a qualidade e a operação da aplicação.
+    Ações disponíveis no projeto: acessar o repositório. acessar o serviço de API.
 
 # Sobre Mim: 
     Informações pessoais e interesses. Pessoas que me inspiram: Oliver Sykes, Monkey D. Luffy, Papa Franciso, Satoru Gojo.

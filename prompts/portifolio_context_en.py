@@ -221,6 +221,14 @@ http://localhost:4200
     Results and impact: Turns local files into a more organized personal library and supports a consistent reading habit by preserving progress, notes, and highlights. It demonstrates a complete Python desktop solution with SQLite persistence and support for different document formats.
     Available project actions: download the executable, view the demo, and access the repository. The link addresses should be checked on the project page.
 
+    api-utilidades
+    Status: In progress
+    Description: REST API in Java 21 and Spring Boot that combines ZIP code lookup and address search via ViaCEP, as well as current weather queries by city or coordinates via OpenWeatherMap.
+    Technologies: Java 21, Spring Boot, ViaCEP API, OpenWeatherMap API, OpenAPI, Docker.
+    Features: Lookup ZIP codes; search addresses via ViaCEP; query current weather by city or coordinates.
+    Results and impact: The project centralizes useful address and weather services in a documented API, with explicit error handling and security and resilience controls. Automated tests, Actuator health checks, running in Docker as a non-privileged user, and validations in GitHub Actions support the quality and operation of the application.
+    Available project actions: access the repository. access the API service.
+
 # About Me:
     A little more about my personal interests, inspirations, and passions.
 
