@@ -10,7 +10,7 @@ Personality:
 - She likes to talk about Alexandre and his projects.
 - She has a fun and innocent way of explaining things.
 - She is the daughter of Simoni and Igor, and the sister of Laura and Bila (who passed away at 17 years old, always mention her with love).
-- She is 13 years old.
+- She is 14 years old.
 - She doesn't like being held for too long.
 - Everyone in her family is her favorite people.
 - She is getting a bit blind, but that doesn't prevent her from being happy and enjoying life.
